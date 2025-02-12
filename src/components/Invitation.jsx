@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 
 const Invitation = () => {
-  const startImage =
-    "https://media.tenor.com/GKDHe7Fw9mgAAAAj/dudu-huh-cute.gif";
+  const startImage = "https://media.tenor.com/tXJsHJmrkIcAAAAi/bubu-dudu.gif";
   const images = [
-    "https://media.tenor.com/vT9FIUfPKesAAAAj/sseeyall-bubu-dudu.gif", // really ?
-    "https://media.tenor.com/8vJ4ch5LTTAAAAAj/bubu-dudu-sseeyall.gif", // cry
-    "https://media.tenor.com/CGH15OxP5wgAAAAj/dudu-cure-dudu-cute.gif", // no think again
-    "https://media.tenor.com/j7bxg0MNS38AAAAi/bubu-dudu-sseeyall.gif",
     "https://media.tenor.com/S8Gp7kQbP7EAAAAi/bubu-dudu-sseeyall.gif",
+    "https://media.tenor.com/2DbtR2cs0-8AAAAi/mimibubu.gif", // really ?
+    "https://media.tenor.com/BrJjmVscA4YAAAAj/bubu-angry-bubu-fierce.gif",
+    "https://media.tenor.com/pZR1wz2VO9AAAAAj/bubududu-panda.gif",
   ];
 
-  const text = ["Are you sure ?", "Really ?", "Think again !", "Last chance!"];
-  
+  const text = ["Are you sure ?", "Really ? 😨", "Think again ! 😤", "Last chance! 🙂"];
+
   const [initialRun, setInitialRun] = useState(true);
   const [yesClicked, setYesClicked] = useState(false);
   const [count, setCount] = useState(0);
@@ -29,32 +27,56 @@ const Invitation = () => {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div
+      style={{ 
+        // borderTop: "4px solid #DCC6E0;", /* Lavande douce */
+        // borderLeft: "4px solid #DCC6E0;",
+        // borderRight: "4px solid #B5D8EB;", /* Bleu pastel */
+        // borderBottom: "4px solid #B5D8EB;",
+       border: "1px solid #3A3A3A",
+        //width:"25vw"
+        padding:"4em"
+   }}
+      className="flex flex-col items-center"
+    >
       <div className="border-solid border-4 border-light-blue-900 p-4 flex flex-col items-center">
         {yesClicked ? (
           <>
-            <img src="https://i.imgur.com/cYsLrOz.gif" alt="kiss" />
-            <span style={{color:"#3A3A3A"}}> I love you 💕</span>
+            <img className="flex flex-col items-center"src="https://i.imgur.com/cYsLrOz.gif" alt="kiss" />
+            <span style={{ color: "#3A3A3A", fontSize:"1.2em" }}> I love you bébou 💕</span>
           </>
         ) : (
           <>
             <img
+            className="flex flex-col items-center"
               src={initialRun ? startImage : images[count % images.length]}
               alt="reaction-gif"
             />
             <p>
-              {initialRun
-                ? (<span style={{color:"#3A3A3A"}}>Will you be my valentine ?</span>)
-                : text[count] || <span style={{color:"#3A3A3A"}}>No is no longer an option! 😈</span>}
+              {initialRun ? (
+                <span style={{ color: "#3A3A3A" }}>
+                  Will you be my valentine ? 🥹
+                </span>
+              ) : (
+                text[count] || (
+                  <span style={{ color: "#3A3A3A" }}>
+                    No is no longer an option! 😈
+                  </span>
+                )
+              )}
             </p>
           </>
         )}
 
-        <div className={`mt-4 flex ${showOnlyYes ? "justify-center" : "gap-4"}`}>
+        <div
+          className={`mt-4 flex ${showOnlyYes ? "justify-center" : "gap-4"}`}
+        >
           {/* YES Button (grandit et se centre si No disparaît) */}
           <button
             style={{
-                backgroundColor:"#C1E1C1",
+              margin:"2vw",
+              // width:"12em",
+              backgroundColor: "#C1E1C1",
               padding: `${8 + count * 4}px ${12 + count * 6}px`,
               opacity: yesClicked ? 0 : 1,
               transition: "all 0.3s ease-in-out",
@@ -66,11 +88,17 @@ const Invitation = () => {
           </button>
 
           {/* NO Button (rétrécit et disparaît) */}
-          {(!yesClicked && !showOnlyYes) && (
+          {!yesClicked && !showOnlyYes && (
             <button
               style={{
-                backgroundColor:"#DCC6E0",
-                padding: `${Math.max(8 - count * 3, 2)}px ${Math.max(12 - count * 6, 4)}px`,
+                margin:"2vw",
+                // width:"12em",
+
+                backgroundColor: "#DCC6E0",
+                padding: `${Math.max(8 - count * 3, 2)}px ${Math.max(
+                  12 - count * 6,
+                  4
+                )}px`,
                 // opacity: count >= maxClick - 1 ? 0 : 1,
                 transition: "all 0.3s ease-in-out",
               }}
